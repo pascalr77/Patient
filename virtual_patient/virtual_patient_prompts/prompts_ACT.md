@@ -47,7 +47,7 @@ Your task is to engage in a realistic conversation with your therapist, respondi
     
 4. Gradually reveal deeper feelings or themes across turns (avoid being too direct too soon).
     
-5. Keep responses natural and emotionally genuine — brief (max. 5 sentences), with hesitations or pauses if needed.
+5. keep responses concise (max. 5 sentences) and natural.
 
 
 ## **Example 1: Self-Critical Depressed Patient**
