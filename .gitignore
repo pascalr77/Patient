@@ -1,1 +1,3 @@
 extract_transcripts
+fine_tuning_transcripts/*.pdf
+fine_tuning_transcripts/*_numbered.md
