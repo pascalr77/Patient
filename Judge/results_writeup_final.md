@@ -112,7 +112,7 @@ where:
 **Interpretation in this context**:
 
 * ACT balance scores span **72 points** (−36 to +36).
-* An ACT balance MAE of **6–7** corresponds to an average deviation of ~18–20% of the full scale.
+* An ACT balance MAE of **6–7** corresponds to an average deviation of ~8–10% of the full scale.
 
 Lower MAE indicates closer numerical alignment with human supervision.
 
@@ -148,7 +148,7 @@ Using **ACT balance MAE** as the primary metric (with TES mean MAE as secondary)
 
 ### Interpretation
 
-* **gpt-4o-mini** achieved the lowest ACT balance MAE (6.12), corresponding to an average deviation of approximately 17% of the full ACT balance range (72 points). It also achieved perfect ACT validity accuracy (1.0), making it the most well-calibrated model relative to the human supervisor.
+* **gpt-4o-mini** achieved the lowest ACT balance MAE (6.12), corresponding to an average deviation of approximately 8% of the full ACT balance range (72 points). It also achieved perfect ACT validity accuracy (1.0), making it the most well-calibrated model relative to the human supervisor.
 
 * **grok-4** demonstrated a distinct performance profile: although its ACT balance MAE (8.23) was higher than gpt-4o-mini, it achieved the strongest rank-order agreement with the human rater (Spearman ρ = 0.69) and the lowest TES mean MAE (0.34). This indicates strong relative ordering of transcripts and particularly accurate empathy judgments, despite weaker absolute calibration on ACT fidelity.
 
@@ -177,7 +177,7 @@ Similarly, the hardest TES items involve **attunement and acceptance**, which re
 
 **Preferred model: gpt-4o-mini**
 
-Based on the primary evaluation metric (ACT balance MAE), **gpt-4o-mini** remains the strongest overall model. It achieved the lowest ACT balance MAE (6.12), corresponding to approximately 17% of the full ACT balance scale, and perfect ACT validity accuracy. This indicates the closest absolute alignment with human supervisory judgment.
+Based on the primary evaluation metric (ACT balance MAE), **gpt-4o-mini** remains the strongest overall model. It achieved the lowest ACT balance MAE (6.12), corresponding to approximately 8% of the full ACT balance scale, and perfect ACT validity accuracy. This indicates the closest absolute alignment with human supervisory judgment.
 
 **grok-4** emerges as a strong alternative with a complementary strength profile. While its ACT balance MAE is higher than gpt-4o-mini, it demonstrates the strongest rank-order agreement (Spearman ρ = 0.69) and the most accurate TES ratings. This suggests that grok-4 is particularly effective at preserving relative differences between sessions and capturing empathic qualities, but less reliable for calibrated ACT fidelity scoring.
 
