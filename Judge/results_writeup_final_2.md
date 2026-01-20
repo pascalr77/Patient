@@ -20,15 +20,12 @@ The goal is not to assess clinical effectiveness, but to test whether models can
   * 25 ACT-FM item ratings (0–3)
   * 9 TES item ratings (1–7)
 
-Six models were evaluated:
+Four models were evaluated:
 
 * **gpt-4o-mini**
 * **gpt-4o**
 * **gpt-5.1**
 * **gpt-5.2**
-* **claude-sonnet-4-5**
-* **grok-4**
-
 
 Each model rated each transcript **once** (temperature = 0.1, deterministic setting).
 
@@ -136,28 +133,22 @@ It evaluates whether models preserve the **relative ordering** of transcripts fr
 
 Using **ACT balance MAE** as the primary metric (with TES mean MAE as secondary), models were compared against the human rater.
 
-| Model                | ACT Valid Accuracy | ACT Balance MAE | Spearman ρ (ACT) | Spearman p (ACT) | TES Mean MAE |
-| -------------------- | -----------------: | --------------: | ---------------: | ---------------: | -----------: |
-| **gpt-4o-mini**      |              1.00  | **6.12**        | 0.42             | 0.0026           |         1.13 |
-| **grok-4**           |              1.00  | 8.23            | **0.69**         | 3.6e−08          |     **0.34** |
-| gpt-4o               |              1.00  | 9.29            | 0.35             | 0.014            |         0.80 |
-| claude-sonnet-4-5    |              0.69  | 24.35           | 0.52             | 0.00011          |         1.17 |
-| gpt-5.2              |              0.73  | 24.46           | 0.37             | 0.0096           |         1.86 |
-| gpt-5.1              |              0.59  | 24.78           | 0.49             | 0.00030          |         1.40 |
-
+| Model           | ACT Valid Accuracy | ACT Balance MAE | Spearman ρ (ACT) | Spearman p (ACT) | TES Mean MAE |
+| --------------- | -----------------: | --------------: | ---------------: | ---------------: | -----------: |
+| **gpt-4o-mini** |                1.0 |        **6.12** |             0.42 |           0.0026 |         1.13 |
+| gpt-4o          |                1.0 |            9.29 |             0.35 |            0.014 |         0.80 |
+| gpt-5.2         |               0.73 |           24.46 |             0.37 |             0.01 |     **1.86** |
+| gpt-5.1         |               0.59 |           24.78 |         **0.49** |           0.0003 |         1.40 |
 
 ### Interpretation
 
-* **gpt-4o-mini** achieved the lowest ACT balance MAE (6.12), corresponding to an average deviation of approximately 17% of the full ACT balance range (72 points). It also achieved perfect ACT validity accuracy (1.0), making it the most well-calibrated model relative to the human supervisor.
+* **gpt-4o-mini** achieved the lowest ACT balance MAE (6.12), corresponding to an average deviation of ~17% of the full ACT balance range (72 points), making it the closest in absolute terms to human supervisory judgment. It also achieved perfect ACT validity accuracy (1.0).
 
-* **grok-4** demonstrated a distinct performance profile: although its ACT balance MAE (8.23) was higher than gpt-4o-mini, it achieved the strongest rank-order agreement with the human rater (Spearman ρ = 0.69) and the lowest TES mean MAE (0.34). This indicates strong relative ordering of transcripts and particularly accurate empathy judgments, despite weaker absolute calibration on ACT fidelity.
+* **gpt-4o** showed higher absolute error on ACT balance (MAE = 9.29), but maintained perfect ACT validity accuracy and relatively strong performance on TES (TES mean MAE = 0.80).
 
-* **gpt-4o** showed moderate ACT balance error (MAE = 9.29) with perfect ACT validity accuracy, but weaker rank-order agreement and TES performance compared to grok-4 and gpt-4o-mini.
+* **gpt-5.2** and **gpt-5.1** performed substantially worse on ACT fidelity, with ACT balance MAEs above 24 and notably lower ACT validity accuracy (0.73 and 0.59, respectively), indicating frequent disagreement with the human supervisory decision.
 
-* **claude-sonnet-4-5**, **gpt-5.2**, and **gpt-5.1** exhibited substantially larger ACT balance MAEs (≈24–25) and reduced ACT validity accuracy. Although claude-sonnet-4-5 and gpt-5.1 achieved relatively high Spearman correlations, these did not translate into accurate absolute scoring, indicating systematic miscalibration relative to the human rater.
-
-Overall, these results reinforce the distinction between **rank agreement** and **calibration accuracy**: high Spearman correlation does not guarantee faithful reproduction of human supervisory judgments.
-
+* Although **gpt-5.1** achieved the highest rank-order agreement on ACT balance (Spearman ρ = 0.49), this did not translate into accurate calibration, highlighting that rank correlation alone is insufficient for reliable ACT-FM supervision.
 
 ---
 
@@ -177,13 +168,13 @@ Similarly, the hardest TES items involve **attunement and acceptance**, which re
 
 **Preferred model: gpt-4o-mini**
 
-Based on the primary evaluation metric (ACT balance MAE), **gpt-4o-mini** remains the strongest overall model. It achieved the lowest ACT balance MAE (6.12), corresponding to approximately 17% of the full ACT balance scale, and perfect ACT validity accuracy. This indicates the closest absolute alignment with human supervisory judgment.
+Based on the primary evaluation metric (ACT balance MAE), **gpt-4o-mini** is the strongest overall model. It achieved the **lowest ACT balance MAE (6.12)**, corresponding to an average deviation of approximately **17% of the full ACT balance scale (72 points)**, indicating the closest absolute alignment with human supervisory judgment. It also achieved perfect ACT validity accuracy (1.0).
 
-**grok-4** emerges as a strong alternative with a complementary strength profile. While its ACT balance MAE is higher than gpt-4o-mini, it demonstrates the strongest rank-order agreement (Spearman ρ = 0.69) and the most accurate TES ratings. This suggests that grok-4 is particularly effective at preserving relative differences between sessions and capturing empathic qualities, but less reliable for calibrated ACT fidelity scoring.
+Although **gpt-4o** showed moderate rank-order agreement on ACT balance (Spearman ρ = 0.35) and relatively strong performance on TES (TES mean MAE = 0.80), its higher ACT balance MAE (9.29) indicates less accurate calibration of ACT fidelity compared to gpt-4o-mini.
 
-By contrast, **claude-sonnet-4-5**, **gpt-5.2**, and **gpt-5.1** show substantial miscalibration on ACT fidelity despite moderate-to-strong rank correlations. Their higher error rates and lower ACT validity accuracy make them unsuitable for automated ACT-FM supervision in this dataset.
+By contrast, **gpt-5.2** and **gpt-5.1** exhibited substantially worse absolute agreement on ACT fidelity, with ACT balance MAEs above 24 and reduced ACT validity accuracy (0.73 and 0.59, respectively). While gpt-5.1 achieved the highest rank-order correlation (Spearman ρ = 0.49), this did not translate into accurate calibration, underscoring that rank correlation alone is insufficient for reliable ACT-FM supervision.
 
-In summary, **gpt-4o-mini** offers the best balance of accuracy, calibration, and reliability for ACT-FM scoring, while **grok-4** may be advantageous in applications emphasizing ranking or empathy assessment rather than absolute fidelity thresholds.
+Overall, these results indicate that **GPT-4-class models**, and **gpt-4o-mini** in particular, are best suited for automated ACT-FM scoring in this dataset.
 
 ---
 
